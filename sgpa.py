@@ -10,7 +10,7 @@ def calculate_sgpa(subjects):
     """subjects: list of (credits, grade) tuples"""
     total_credits = sum(c for c, _ in subjects)
     total_points = sum(c * GRADE_POINTS[g.upper()] for c, g in subjects)
-    return total_points / total_credits
+    return round(total_points / total_credits, 2)
 
 
 def calculate_cgpa(semesters):
