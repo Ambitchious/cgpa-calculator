@@ -10,6 +10,8 @@ def calculate_sgpa(subjects):
     """subjects: list of (credits, grade) tuples"""
     total_credits = sum(c for c, _ in subjects)
     total_points = sum(c * GRADE_POINTS[g.upper()] for c, g in subjects)
+    if total_credits == 0:
+        return 0.0
     return round(total_points / total_credits, 2)
 
 
@@ -17,7 +19,9 @@ def calculate_cgpa(semesters):
     """semesters: list of (sgpa, credits) tuples"""
     total_credits = sum(c for _, c in semesters)
     weighted = sum(s * c for s, c in semesters)
-    return weighted / total_credits
+    if total_credits == 0:
+        return 0.0
+    return round(weighted / total_credits, 2)
 
 
 if __name__ == "__main__":
